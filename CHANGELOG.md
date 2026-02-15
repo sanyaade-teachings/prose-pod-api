@@ -11,6 +11,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
        It’s used by `task release` when updating the changelog. -->
 [Unreleased]: https://github.com/prose-im/prose-pod-api/compare/v0.19.2...HEAD
 
+### Changed
+
+- feat: Update to latest Pod architecture
+- security: Bump dependencies (in `b5b57036`, `2fdec77e`, `ba3a4003`)
+- security: Remove unused dependencies (thanks `cargo machete`!) (in `27bc8413`)
+- chore: Improve logging
+
+### Added
+
+- feat(health-check): Serve health check while doing a factory reset (in `38514e8b`)
+- feat(prosody): Enable `mod_muc_cloud_notify` (in `1bcab6d9`)
+- feat(prosody): Enable `groups_shell` (in `11489c78`)
+- feat(privacy): Proxy Prose Cloud API via `/cloud-api-proxy`  (in `03fd8a47`)
+- feat(privacy): Proxy `https://files.prose.org` via `/prose-files-proxy` (in `059f489a`)
+- docs(openapi): Document “Backup & Restore” routes (in `8ca9ed34`)
+
+### Fixed
+
+- fix(prosody): Fix “Duplicate option c2s_require_encryption” when debug config `c2s_unencrypted` is enabled (in `8e98ff26`)
+- fix(auth): Fix regression where `HEAD /v1/workspace` would require the `ADMIN` role (in `adcebb26`)
+- fix(auth): Fix set own recovery email address (in `434e7454`)
+- fix(members): Allow listing members as non-admin (in `f0e4aa70`)
+- fix: Shut SQLite down gracefully (in `c9c2caae`)
+- fix: Fix `tracing-subscriber` race condition (in `98f011e4`)
+
 ## [0.19.2] - 2025-09-23
 
 [0.19.2]: https://github.com/prose-im/prose-pod-api/compare/v0.19.1...v0.19.2
