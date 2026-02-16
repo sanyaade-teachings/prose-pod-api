@@ -2661,7 +2661,7 @@ checksum = "f8ca58f447f06ed17d5fc4043ce1b10dd205e060fb3ce5b979b8ed8e59ff3f79"
 
 [[package]]
 name = "migrator"
-version = "0.19.2"
+version = "0.20.0"
 dependencies = [
  "sea-orm-migration",
  "service",
@@ -3342,7 +3342,7 @@ dependencies = [
 
 [[package]]
 name = "prose-pod-api"
-version = "0.19.2"
+version = "0.20.0"
 dependencies = [
  "anyhow",
  "arc-swap",
@@ -4492,7 +4492,7 @@ dependencies = [
 
 [[package]]
 name = "service"
-version = "0.19.2"
+version = "0.20.0"
 dependencies = [
  "anyhow",
  "arc-swap",
