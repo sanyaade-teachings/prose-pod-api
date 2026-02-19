@@ -136,30 +136,30 @@ impl ProseDefault for prosody_config::ProsodyConfig {
             modules_enabled: Some(
                 [
                     "auto_activate_hosts",
-                    "roster",
-                    "groups_internal",
-                    "groups_shell",
-                    "saslauth",
-                    "tls",
-                    "dialback",
-                    "disco",
-                    "smacks",
-                    "private",
-                    "vcard_legacy",
-                    "vcard4",
-                    "version",
-                    "uptime",
-                    "time",
-                    "ping",
-                    "lastactivity",
-                    "pep",
                     "blocklist",
-                    "limits",
                     "carbons",
                     "csi",
-                    "server_contact_info",
-                    "websocket",
+                    "dialback",
+                    "disco",
+                    "groups_internal",
+                    "groups_shell",
+                    "lastactivity",
+                    "limits",
+                    "pep",
+                    "ping",
+                    "private",
                     "reload_modules",
+                    "roster",
+                    "saslauth",
+                    "server_contact_info",
+                    "smacks",
+                    "time",
+                    "tls",
+                    "uptime",
+                    "vcard4",
+                    "vcard_legacy",
+                    "version",
+                    "websocket",
                 ]
                 .into_iter()
                 .map(ToString::to_string)
@@ -190,17 +190,17 @@ impl ProseDefault for prosody_config::ProsodyConfig {
             settings: ProsodySettings {
                 modules_enabled: Some(
                     [
-                        "rest",
-                        "http_oauth2",
                         "admin_rest",
                         "cloud_notify",
-                        "register",
-                        "prose_version",
                         "http_admin_api", // Has to be non-global.
+                        "http_oauth2",
                         "invites",
                         "invites_groups",
                         "invites_register",
                         "invites_register_api",
+                        "prose_version",
+                        "register",
+                        "rest",
                     ]
                     .into_iter()
                     .map(ToString::to_string)
@@ -252,8 +252,8 @@ impl ProseDefault for prosody_config::ProsodyConfig {
                 muc_log_by_default: Some(true),
                 modules_enabled: Some(
                     [
-                        "muc_public_affiliations",
                         "muc_cloud_notify",
+                        "muc_public_affiliations",
                     ]
                     .into_iter()
                     .map(ToString::to_string)
