@@ -137,6 +137,7 @@ impl ProseDefault for prosody_config::ProsodyConfig {
                 [
                     "auto_activate_hosts",
                     "blocklist",
+                    "bookmarks",
                     "carbons",
                     "csi",
                     "dialback",
