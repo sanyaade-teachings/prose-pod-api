@@ -1,7 +1,7 @@
 ---
-source: service/tests/prosody/mod.rs
-assertion_line: 43
-expression: world.prosody_config().to_string()
+source: src/service/tests/prosody/mod.rs
+assertion_line: 65
+expression: world.prosody_config().to_string(None)
 ---
 -- Prose Pod Server
 -- XMPP Server Configuration
@@ -37,6 +37,7 @@ modules_enabled = {
   "groups_shell";
   "lastactivity";
   "limits";
+  "mam";
   "pep";
   "ping";
   "private";
@@ -76,6 +77,9 @@ limits = {
 
 -- Allow reverse-proxying to WebSocket service over insecure local HTTP
 consider_websocket_secure = true
+
+-- MAM settings
+default_archive_policy = false
 
 -- Enable vCard legacy compatibility layer
 upgrade_legacy_vcards = true
@@ -123,6 +127,7 @@ Component "groups.test.org" "muc"
   -- Modules
   modules_enabled = {
     "muc_cloud_notify";
+    "muc_mam";
     "muc_public_affiliations";
   }
 

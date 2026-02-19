@@ -1,6 +1,6 @@
 ---
 source: src/service/tests/prosody/mod.rs
-assertion_line: 95
+assertion_line: 65
 expression: world.prosody_config().to_string(None)
 ---
 -- Prose Pod Server
@@ -37,6 +37,7 @@ modules_enabled = {
   "groups_shell";
   "lastactivity";
   "limits";
+  "mam";
   "pep";
   "ping";
   "private";
@@ -52,7 +53,6 @@ modules_enabled = {
   "vcard_legacy";
   "version";
   "websocket";
-  "mam";
 }
 modules_disabled = { "s2s" }
 
@@ -143,8 +143,8 @@ Component "groups.test.org" "muc"
   -- Modules
   modules_enabled = {
     "muc_cloud_notify";
-    "muc_public_affiliations";
     "muc_mam";
+    "muc_public_affiliations";
   }
 
   -- MAM settings

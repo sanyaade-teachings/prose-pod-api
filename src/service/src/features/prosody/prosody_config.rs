@@ -146,6 +146,7 @@ impl ProseDefault for prosody_config::ProsodyConfig {
                     "groups_shell",
                     "lastactivity",
                     "limits",
+                    "mam",
                     "pep",
                     "ping",
                     "private",
@@ -254,12 +255,23 @@ impl ProseDefault for prosody_config::ProsodyConfig {
                 modules_enabled: Some(
                     [
                         "muc_cloud_notify",
+                        "muc_mam",
                         "muc_public_affiliations",
                     ]
                     .into_iter()
                     .map(ToString::to_string)
                     .collect(),
                 ),
+                custom_settings: vec![
+                    // See <https://modules.prosody.im/mod_muc_cloud_notify>
+                    Group::new(
+                        "mod_muc_cloud_notify",
+                        // NOTE: `push_notification_with_body` and
+                        //   `push_notification_with_sender` already
+                        //   defined in the global settings.
+                        vec![],
+                    ),
+                ],
                 ..Default::default()
             },
         };

@@ -10,7 +10,7 @@ use service::{
     global_storage,
     models::{DateLike, Duration, PossiblyInfinite},
     prosody::IntoProsody as _,
-    prosody_config::linked_hash_set::LinkedHashSet,
+    prosody_config::{linked_hash_set::LinkedHashSet, ArchivePolicy},
     server_config,
 };
 
@@ -165,11 +165,18 @@ async fn then_message_archiving(
         .to_owned();
     let global_modules = global_settings.modules_enabled.unwrap_or_default();
     let muc_modules = muc_settings.modules_enabled.unwrap_or_default();
-    assert_contains_if(enabled, &global_modules, "mam", LinkedHashSet::contains);
+    assert_contains_if(true, &global_modules, "mam", LinkedHashSet::contains);
+    assert_eq!(
+        global_settings.default_archive_policy,
+        Some(if enabled {
+            ArchivePolicy::Always
+        } else {
+            ArchivePolicy::OnlyIfUserEnabled
+        })
+    );
     assert_defined_if(enabled, global_settings.archive_expires_after);
-    assert_defined_if(enabled, global_settings.default_archive_policy);
     assert_defined_if(enabled, global_settings.max_archive_query_results);
-    assert_contains_if(enabled, &muc_modules, "muc_mam", LinkedHashSet::contains);
+    assert_contains_if(true, &muc_modules, "muc_mam", LinkedHashSet::contains);
 
     Ok(())
 }

@@ -85,6 +85,15 @@ fn prosody_config_from_db_(
         ),
     );
 
+    // mod_mam
+    if message_archive_enabled {
+        global_settings.default_archive_policy = Some(ArchivePolicy::Always);
+        global_settings.archive_expires_after = Some(message_archive_retention.into_prosody());
+        global_settings.max_archive_query_results = Some(100);
+    } else {
+        global_settings.default_archive_policy = Some(ArchivePolicy::OnlyIfUserEnabled);
+    }
+
     if federation_enabled {
         global_settings.enable_module("s2s".to_owned());
         global_settings.enable_module("s2s_bidi".to_owned());
@@ -184,36 +193,17 @@ fn prosody_config_from_db_(
         }
     }
 
-    {
-        let muc_settings = (config.additional_sections)
-            .iter_mut()
-            .find_map(|section| match section {
-                ProsodyConfigSection::Component {
-                    plugin, settings, ..
-                } if plugin.as_str() == "muc" => Some(settings),
-                _ => None,
-            })
-            .expect("The 'Chatrooms' section should always be present.");
-
-        global_settings.custom_settings.push(
-            // See <https://modules.prosody.im/mod_muc_cloud_notify>
-            Group::new(
-                "mod_muc_cloud_notify",
-                // NOTE: `push_notification_with_body` and
-                //   `push_notification_with_sender` already
-                //   defined in the global settings.
-                vec![],
-            ),
-        );
-
-        if message_archive_enabled {
-            add_enabled_module(global_settings, "mam");
-            global_settings.archive_expires_after = Some(message_archive_retention.into_prosody());
-            global_settings.default_archive_policy = Some(ArchivePolicy::Always);
-            global_settings.max_archive_query_results = Some(100);
-            add_enabled_module(muc_settings, "muc_mam");
-        }
-    }
+    // {
+    //     let muc_settings = (config.additional_sections)
+    //         .iter_mut()
+    //         .find_map(|section| match section {
+    //             ProsodyConfigSection::Component {
+    //                 plugin, settings, ..
+    //             } if plugin.as_str() == "muc" => Some(settings),
+    //             _ => None,
+    //         })
+    //         .expect("The 'Chatrooms' section should always be present.");
+    // }
 
     // WARN: Always keep as second to last change!
     for module in app_config.prosody_ext.additional_modules_enabled.iter() {
