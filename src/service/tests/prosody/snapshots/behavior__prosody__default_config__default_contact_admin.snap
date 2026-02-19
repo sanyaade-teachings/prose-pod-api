@@ -31,6 +31,7 @@ modules_enabled = {
   "bookmarks";
   "carbons";
   "csi";
+  "csi_simple";
   "dialback";
   "disco";
   "groups_internal";
