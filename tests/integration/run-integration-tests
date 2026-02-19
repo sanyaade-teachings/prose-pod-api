@@ -125,6 +125,7 @@ stepci_run() {
 		unset PROSE_CONFIG_FILE
 	else
 		export PROSE_CONFIG_FILE="${prose_config_file:?}"
+		unset prose_config_file
 	fi
 
 	# NOTE: We have to `cd $STEPCI_DIR` because transitive `$ref`s are not processed correctly otherwise.
