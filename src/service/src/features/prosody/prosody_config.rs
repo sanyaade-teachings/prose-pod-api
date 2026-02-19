@@ -143,7 +143,6 @@ impl ProseDefault for prosody_config::ProsodyConfig {
                     "tls",
                     "dialback",
                     "disco",
-                    "posix",
                     "smacks",
                     "private",
                     "vcard_legacy",

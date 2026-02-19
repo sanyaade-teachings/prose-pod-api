@@ -34,7 +34,6 @@ modules_enabled = {
   "tls";
   "dialback";
   "disco";
-  "posix";
   "smacks";
   "private";
   "vcard_legacy";
