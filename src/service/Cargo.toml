@@ -62,7 +62,7 @@ semver = { workspace = true }
 serde = { workspace = true, features = ["rc"] }
 serde_json = { workspace = true }
 serde_with = { workspace = true, features = ["macros", "alloc", "base64"] }
-serdev = { workspace = true }
+serdev = { workspace = true, features = ["derive"] }
 strum = { workspace = true, features = ["derive"] }
 thiserror = { workspace = true }
 time = { workspace = true, features = ["serde"] }
