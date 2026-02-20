@@ -1,7 +1,7 @@
 ---
-source: service/tests/prosody/mod.rs
-assertion_line: 43
-expression: world.prosody_config().to_string()
+source: src/service/tests/prosody/mod.rs
+assertion_line: 65
+expression: world.prosody_config().to_string(None)
 ---
 -- Prose Pod Server
 -- XMPP Server Configuration
@@ -27,31 +27,33 @@ http_ports = { 5280 }
 plugin_paths = { "/usr/local/lib/prosody/modules" }
 modules_enabled = {
   "auto_activate_hosts";
-  "roster";
-  "groups_internal";
-  "groups_shell";
-  "saslauth";
-  "tls";
-  "dialback";
-  "disco";
-  "posix";
-  "smacks";
-  "private";
-  "vcard_legacy";
-  "vcard4";
-  "version";
-  "uptime";
-  "time";
-  "ping";
-  "lastactivity";
-  "pep";
   "blocklist";
-  "limits";
+  "bookmarks";
   "carbons";
   "csi";
-  "server_contact_info";
-  "websocket";
+  "csi_battery_saver";
+  "dialback";
+  "disco";
+  "groups_internal";
+  "groups_shell";
+  "lastactivity";
+  "limits";
+  "mam";
+  "pep";
+  "ping";
+  "private";
   "reload_modules";
+  "roster";
+  "saslauth";
+  "server_contact_info";
+  "smacks";
+  "time";
+  "tls";
+  "uptime";
+  "vcard4";
+  "vcard_legacy";
+  "version";
+  "websocket";
 }
 modules_disabled = { "s2s" }
 
@@ -77,6 +79,9 @@ limits = {
 -- Allow reverse-proxying to WebSocket service over insecure local HTTP
 consider_websocket_secure = true
 
+-- MAM settings
+default_archive_policy = false
+
 -- Enable vCard legacy compatibility layer
 upgrade_legacy_vcards = true
 
@@ -88,17 +93,17 @@ push_notification_with_sender = true
 VirtualHost "test.org"
   -- Modules
   modules_enabled = {
-    "rest";
-    "http_oauth2";
     "admin_rest";
     "cloud_notify";
-    "register";
-    "prose_version";
     "http_admin_api";
+    "http_oauth2";
     "invites";
     "invites_groups";
     "invites_register";
     "invites_register_api";
+    "prose_version";
+    "register";
+    "rest";
   }
 
   -- mod_reload_modules
@@ -122,8 +127,9 @@ Component "groups.test.org" "muc"
 
   -- Modules
   modules_enabled = {
-    "muc_public_affiliations";
     "muc_cloud_notify";
+    "muc_mam";
+    "muc_public_affiliations";
   }
 
   -- MAM settings
