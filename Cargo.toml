@@ -19,9 +19,7 @@ axum-extra = { version = "=0.12.5", default-features = false }
 axum-test = { version = "=18.7.0", default-features = false }
 axum-tracing-opentelemetry = { version = "=0.33.0", default-features = false }
 base64 = { version = "=0.22.1", default-features = false }
-biscuit-auth = { version = "=6.0.0", default-features = false, features = [
-    "datalog-macro",
-] }
+biscuit-auth = { version = "=6.0.0", default-features = false }
 bytes = { version = "=1.11.1", default-features = false }
 cucumber = { version = "=0.22.1", default-features = false }
 email_address = { version = "=0.2.9", default-features = false }
