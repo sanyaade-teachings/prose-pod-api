@@ -140,7 +140,7 @@ impl ProseDefault for prosody_config::ProsodyConfig {
                     "bookmarks",
                     "carbons",
                     "csi",
-                    "csi_simple",
+                    "csi_battery_saver",
                     "dialback",
                     "disco",
                     "groups_internal",
