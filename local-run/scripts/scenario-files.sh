@@ -7,7 +7,8 @@
 
 : ${DATABASE_PATH:="${SCENARIO_DIR:?}"/database.sqlite}
 : ${MAILPIT_DATABASE_PATH:="${SCENARIO_DIR:?}"/mailpit-database.db}
-: ${PROSE_CONFIG_FILE:="${SCENARIO_DIR:?}"/prose.toml}
+: ${PROSE_CONFIG_DIR:="${SCENARIO_DIR:?}"/prose-config}
+: ${PROSE_CONFIG_FILE:="${PROSE_CONFIG_DIR:?}"/prose.toml}
 : ${PROSE_POD_SERVER_DATA_DIR:="${SCENARIO_DIR:?}"/prose-pod-server-data}
 : ${SCENARIO_CONSTANTS_FILE:="${SCENARIO_DIR:?}"/constants.sh}
 : ${ENV_FILE:="${SCENARIO_DIR:?}"/local-run.env}

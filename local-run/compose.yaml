@@ -12,7 +12,7 @@ services:
       - "${DATABASE_PATH:?}:/var/lib/prose-pod-api/database.sqlite"
       # NOTE: `prose.toml` cannot be read-only because we need to
       #   override it when doing a factory reset (and only then).
-      - "${PROSE_CONFIG_FILE:?}:/etc/prose/prose.toml"
+      - "${PROSE_CONFIG_DIR:?}:/etc/prose/"
       - "${ETC_PROSODY_DIR:?}:/etc/prosody/"
     networks:
       prose-network:
@@ -33,7 +33,7 @@ services:
       - "${VAR_LIB_PROSODY_DIR:?}:/var/lib/prosody/"
       # NOTE: `prose.toml` cannot be read-only because we need to
       #   override it when doing a factory reset (and only then).
-      - "${PROSE_CONFIG_FILE:?}:/etc/prose/prose.toml"
+      - "${PROSE_CONFIG_DIR:?}:/etc/prose/"
       - "${PROSE_POD_SERVER_DATA_DIR:?}:/var/lib/prose-pod-server/"
     ports:
       - "5222:5222"
