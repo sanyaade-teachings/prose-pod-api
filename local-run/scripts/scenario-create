@@ -57,6 +57,10 @@ copy-if-exists() {
 		edo cp -RLf "${BASE_SCENARIO_DIR:?}"/"${file_path:?}" "${SCENARIO_DIR:?}"/"${file_path:?}"
 	else
 		trace "Cannot $(format_code cp) $(format_code "${file_path:?}"): Not found."
+		case "${file_path:?}" in
+			*/) edo mkdir -p "${SCENARIO_DIR:?}"/"${file_path:?}" ;;
+			*) edo mkdir -p "$(dirname "${SCENARIO_DIR:?}"/"${file_path:?}")" ;;
+		esac
 	fi
 }
 
@@ -65,6 +69,7 @@ copy-if-exists 'coredns/'
 copy-if-exists 'prose-config/'
 copy-if-exists 'prose-pod-api-data/'
 copy-if-exists 'prose-pod-server-data/'
+copy-if-exists 'prose-backups/'
 copy-if-exists constants.sh
 copy-if-exists "$(basename "${ENV_FILE:?}")"
 copy-if-exists "$(basename "${DNS_ZONE_FILE:?}")"
@@ -76,5 +81,5 @@ copy-if-exists "$(basename "${MAILPIT_DATABASE_PATH:?}")"
 # NOTE: Because of `set -e`, we’d have to use `[ … ] && … || :`.
 #   Let’s use `if [ … ]; then …; fi` instead for clarity.
 if [ -n "$GITHUB_ACTIONS" ]; then
-	edo sudo chmod -R a+w "${SCENARIO_DIR:?}"/{prosody,prose-pod-api-data,prose-pod-server-data}
+	edo sudo chmod -R a+w "${SCENARIO_DIR:?}"/{prosody,prose-pod-api-data,prose-pod-server-data,prose-backups}
 fi
