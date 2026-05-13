@@ -75,9 +75,9 @@ start() {
 
 		wait_until_api_running "${INTEGRATION_TEST_HOST:?}"
 
-		if [ -n "${prose_config_file-}" ]; then
+		if [ -n "${prose_config_dir-}" ]; then
 			# Update configuration file.
-			cp -f "${prose_config_file:?}" "${SCENARIOS_DIR:?}"/"${SCENARIO_NAME:?}"/prose.toml
+			edo cp -f "${prose_config_dir:?}"/* "${SCENARIOS_DIR:?}"/"${SCENARIO_NAME:?}"/prose-config/*
 
 			# Reload APIs with new configuration file.
 			ADMIN_TOKEN="$(xh POST "${INTEGRATION_TEST_HOST:?}"/v1/login -a 'pauline.collins@test.local:demo' -b | jq -r '.token')"
@@ -118,14 +118,14 @@ stepci_run() {
 	info "$(fg_blue "Running test '$(sed "s#${STEPCI_DIR:?}/##" <<< "${test_file}")' with config '${config_options}'…")"
 	info "$(fg_blue "$(for _ in $(seq 72); do printf "="; done)")"
 
-	export prose_config_file="${INTEGRATION_TESTS_DIR:?}/prose-${config_options:?}.toml"
-	[ -f "${prose_config_file:?}" ] || die "File $(format_url "${prose_config_file:?}") doesn't exist."
+	export prose_config_dir="${INTEGRATION_TESTS_DIR:?}/prose-config-${config_options:?}"
+	[ -d "${prose_config_dir:?}" ] || die "Directory $(format_url "${prose_config_dir:?}") doesn't exist."
 
 	if [ "${LATE_RELOAD_CONFIG:-0}" -eq 1 ]; then
-		unset PROSE_CONFIG_FILE
+		unset PROSE_CONFIG_DIR
 	else
-		export PROSE_CONFIG_FILE="${prose_config_file:?}"
-		unset prose_config_file
+		export PROSE_CONFIG_DIR="${prose_config_dir:?}"
+		unset prose_config_dir
 	fi
 
 	# NOTE: We have to `cd $STEPCI_DIR` because transitive `$ref`s are not processed correctly otherwise.
@@ -144,7 +144,7 @@ fi
 
 info "Will run tests on $(format_url ${INTEGRATION_TEST_HOST:?})."
 
-# NOTE: Some tests need a different `PROSE_CONFIG_FILE` or `DNS_ZONE_FILE`.
+# NOTE: Some tests need a different `PROSE_CONFIG_DIR` or `DNS_ZONE_FILE`.
 #   Special cases are handled here.
 for arg in "$@"; do
 	if in_array SKIPPED "$arg"; then

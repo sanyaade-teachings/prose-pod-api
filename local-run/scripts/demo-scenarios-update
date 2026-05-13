@@ -28,7 +28,7 @@ edo task local:stop
 export SCENARIOS_DIR="${INTEGRATION_TESTS_DIR:?}"/scenarios
 export ENV_FILE="${INTEGRATION_TESTS_DIR:?}"/test.env
 export DNS_ZONE_FILE="${INTEGRATION_TESTS_DIR:?}"/dns-zones/working-static.zone
-export PROSE_CONFIG_FILE="${INTEGRATION_TESTS_DIR:?}/prose-test.toml"
+export PROSE_CONFIG_DIR="${INTEGRATION_TESTS_DIR:?}/prose-config-test"
 
 info "Updating $(format_code integration/default)…"
 edo task local:run -- --scenario=default --api=local --detach
