@@ -11,6 +11,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
        It’s used by `task release` when updating the changelog. -->
 [Unreleased]: https://github.com/prose-im/prose-pod-api/compare/v0.20.0...HEAD
 
+### Removed
+
+- chore(prosody): Disable `mod_posix` (in `6c1389d4`)
+
+### Changed
+
+- chore(prosody): Sort enabled modules to improve readability (in `d9dd9dfb`)
+- chore(deps): Update dependencies (in `163498e7`, `0bc113a8`, `5b55d603`, `0806396a`)
+- chore(deps): Pin dependency versions (in `0d01d74b`)
+- chore(deps): Update base Docker images (in `61567846`)
+- chore(tests): Several test-related improvements (in `65a2a5f2`, `643512e8`, `f8334564`, `6f29da77`)
+
+### Added
+
+- feat(prosody): Enable `mod_bookmarks` (in `d0a1c13b`)
+- feat(prosody): Always enable `mod_mam` (but dynamically change policy) (in `23c21ced`)
+- feat(prosody): Enable `mod_csi_battery_saver` (in `7ef9d806`)
+- feat(backups): Add Backup & Restore routes (in `8a3d8f1d`, `f9799b5f`)
+- docs(openapi): Document “Backup & Restore” routes (in `aac95afe`)
+
+### Fixed
+
+- fix(proxy): Keep query (in `087ca677`)
+- fix(proxy): Do not log request headers (in `7d06cf39`)
+- docs(openapi): Fix API version in OpenAPI docs (in `a1e8b7ca`)
+
 ## [0.20.0] - 2026-02-16
 
 [0.20.0]: https://github.com/prose-im/prose-pod-api/compare/v0.19.2...v0.20.0
