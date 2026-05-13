@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
@@ -66,7 +66,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           submodules: true
 
@@ -80,7 +80,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Ensure no debug tags are committed in feature files
         run: "! grep -rEn --include='*.feature' '@(testing|debug)' ."
@@ -97,7 +97,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
@@ -130,7 +130,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout prose-pod-api
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           submodules: true
 
@@ -167,7 +167,7 @@ jobs:
       # - name: Install Step CI
       #   run: npm install -g stepci
       - name: Checkout stepci-runner
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: RemiBardon/stepci-runner
           ref: prose
@@ -179,7 +179,7 @@ jobs:
           npm run build
           npm link
       - name: Checkout stepci
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: RemiBardon/stepci
           ref: prose
