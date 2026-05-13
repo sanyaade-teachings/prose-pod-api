@@ -2560,7 +2560,7 @@ dependencies = [
 
 [[package]]
 name = "migrator"
-version = "0.20.0"
+version = "0.21.0"
 dependencies = [
  "sea-orm-migration",
  "service",
@@ -3232,7 +3232,7 @@ dependencies = [
 
 [[package]]
 name = "prose-pod-api"
-version = "0.20.0"
+version = "0.21.0"
 dependencies = [
  "anyhow",
  "arc-swap",
@@ -4377,7 +4377,7 @@ dependencies = [
 
 [[package]]
 name = "service"
-version = "0.20.0"
+version = "0.21.0"
 dependencies = [
  "anyhow",
  "arc-swap",
